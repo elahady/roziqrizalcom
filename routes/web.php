@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Home / blog index
+// Home / personal branding landing
 Route::view('/', 'home')->name('home');
 Route::view('/home', 'home');
+
+// Blog index (was previously the homepage)
+Route::view('/journal', 'journal')->name('journal');
 
 // Static profile & content pages
 Route::view('/im-project-manager', 'pages.im-project-manager');

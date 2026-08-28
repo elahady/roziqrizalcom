@@ -6,6 +6,8 @@
         <ul class="main-nav">
             <li class="{{ $isActive('/') }}"><a href="{{ url('/') }}">Home</a></li>
 
+            <li class="{{ $isActive('journal') }}"><a href="{{ url('/journal') }}">Journal</a></li>
+
             <li class="has-children {{ $isActive('im-project-manager') }}">
                 <a href="{{ url('/im-project-manager') }}">I'm Project Manager</a>
                 <ul class="dropdown">
