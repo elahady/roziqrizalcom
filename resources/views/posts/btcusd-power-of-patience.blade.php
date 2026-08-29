@@ -31,7 +31,10 @@
                 <li><strong>Target:</strong> Risk-to-Reward 1:1 ratio</li>
             </ul>
 
-            @include('partials.image-placeholder', ['label' => 'Screenshot chart trading, 27 Maret 2026 17:04'])
+            <figure>
+                <img src="{{ asset('images/chart-btcusd-power-of-patience.jpg') }}" alt="Chart BTCUSD: Phase 1-3, jual utama, retest, dan target entry">
+                <figcaption>Screenshot chart trading, 27 Maret 2026 17:04</figcaption>
+            </figure>
 
             <h2>V. Logika Nirrisiko (Free Roll)</h2>
             <p>This strategy rests entirely on mental peace. The 2,000-point profit from prior selling positions covers potential risk on this buy:</p>

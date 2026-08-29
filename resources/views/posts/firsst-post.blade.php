@@ -29,7 +29,15 @@
             <p>Whether it's a new programming framework, a more efficient Agile methodology, or a shift in global macroeconomics, I am driven by the joy of learning something new. This blog will be the place where I share my reflections on these journeys.</p>
             <p>Thank you for being here at the start. Let's learn, adapt, and grow together.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Ilustrasi dekoratif AI-generated (placeholder)'])
+            <figure>
+                <img src="{{ asset('images/illustration-agile-market-bridge.jpg') }}" alt="Ilustrasi jembatan Agile dan pasar finansial">
+                <figcaption>Ilustrasi dekoratif AI-generated</figcaption>
+            </figure>
+
+            <figure>
+                <video src="{{ asset('images/video-firsst-post.mp4') }}" controls preload="metadata"></video>
+                <figcaption>Video, 17 Februari 2026</figcaption>
+            </figure>
         </div>
     </article>
 

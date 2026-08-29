@@ -7,7 +7,10 @@
             <blockquote>&ldquo;Great software isn't just built with code; it's built with a disciplined system. Since I respect the confidentiality of my clients and my firm, this page is dedicated to sharing <strong>how I work</strong>&mdash;the methodologies and philosophies I use to ensure every sprint is a step toward excellence.&rdquo;</blockquote>
 
             <h2>1. The Agile Rhythm: Daily Execution &amp; Focus</h2>
-            @include('partials.image-placeholder', ['label' => 'Ilustrasi ritme agile harian'])
+            <figure>
+                <img src="{{ asset('images/illustration-agile-rhythm-1.png') }}" alt="Ilustrasi ritme agile harian: alignment, backlog, sprint integrity">
+                <figcaption>Ilustrasi ritme agile harian</figcaption>
+            </figure>
             <p>The approach emphasizes adaptation to team dynamics rather than rigid adherence to processes.</p>
 
             <h3>The 15-Minute Alignment</h3>
@@ -34,7 +37,10 @@
             </ul>
 
             <h2>2. The Translation Layer: Bridging Business &amp; Code</h2>
-            @include('partials.image-placeholder', ['label' => 'Tangkapan layar WhatsApp, 19 Februari 2026'])
+            <figure>
+                <img src="{{ asset('images/illustration-agile-rhythm-2.jpeg') }}" alt="Ilustrasi flow visualization, decomposition, dan language bridge">
+                <figcaption>Tangkapan layar WhatsApp, 19 Februari 2026</figcaption>
+            </figure>
             <p>The core strength centers on interpreting between business and technical worlds.</p>
 
             <h3>Flow Visualization (Bridging Operational Needs and Technical Execution)</h3>
@@ -76,7 +82,16 @@
                 <li><strong>Proactive Risk Allocation:</strong> Similar to DCA investment strategies, buffers are &ldquo;allocated&rdquo; for technical risks and uncertainties.</li>
             </ul>
 
-            @include('partials.image-placeholder', ['label' => 'Dua ilustrasi tambahan (AI-generated, placeholder)'])
+            <div class="image-row">
+                <figure>
+                    <img src="{{ asset('images/illustration-project-manager.png') }}" alt="Ilustrasi abstrak Project Manager">
+                    <figcaption>Ilustrasi tambahan (AI-generated)</figcaption>
+                </figure>
+                <figure>
+                    <img src="{{ asset('images/illustration-market-observer.png') }}" alt="Ilustrasi abstrak Market Observer">
+                    <figcaption>Ilustrasi tambahan (AI-generated)</figcaption>
+                </figure>
+            </div>
         </div>
     </article>
 

@@ -7,7 +7,10 @@
             <h2>&ldquo;It's not just a job; it's a playground.&rdquo;</h2>
             <p>While my professional life is spent managing roadmaps and stakeholders, my personal time is fueled by a deep-seated curiosity for how technology shapes our future. For me, being an IT Enthusiast means never being satisfied with just knowing <em>that</em> something works&mdash;I want to know <em>how</em> it works and how it can be better.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Ilustrasi AI-generated terkait antusiasme teknologi'])
+            <figure>
+                <img src="{{ asset('images/illustration-it-enthusiast.png') }}" alt="Ilustrasi abstrak IT Enthusiast">
+                <figcaption>Ilustrasi AI-generated terkait antusiasme teknologi</figcaption>
+            </figure>
 
             <h3>Current Tech Obsessions</h3>
             <p>As a lifelong learner, I'm always diving into new &ldquo;playgrounds.&rdquo; Here's what's currently on my radar:</p>
@@ -34,7 +37,16 @@
             <h3>Let's Talk Tech!</h3>
             <p>What are you currently learning? Whether it's a new framework, an AI tool, or a paradigm shift in the industry, I'm always up for a deep-dive discussion.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Foto profil dan ilustrasi tambahan (placeholder)'])
+            <div class="image-row">
+                <figure>
+                    <img src="{{ asset('images/potret-elahady.png') }}" alt="Potret AI-generated Elahady">
+                    <figcaption>Potret AI-generated Elahady</figcaption>
+                </figure>
+                <figure>
+                    <img src="{{ asset('images/illustration-agile-market-bridge.jpg') }}" alt="Ilustrasi jembatan Agile dan pasar">
+                    <figcaption>Ilustrasi tambahan (AI-generated)</figcaption>
+                </figure>
+            </div>
         </div>
     </article>
 

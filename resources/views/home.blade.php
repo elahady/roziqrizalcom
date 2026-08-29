@@ -19,8 +19,11 @@
             <h1 class="font-serif-display text-headline-lg-mobile md:text-display-lg text-on-surface leading-tight">
                 Muhammad Roziq<br>Rizal Al Ahadi
             </h1>
+            <p class="font-serif-display italic text-body-lg text-on-surface-variant max-w-2xl leading-relaxed text-right" dir="rtl" lang="ar">
+                إِنَّ لِرَبِّكَ عَلَيْكَ حَقًّا، وَلِنَفْسِكَ عَلَيْكَ حَقًّا، وَلِأَهْلِكَ عَلَيْكَ حَقًّا، فَأَعْطِ كُلَّ ذِي حَقٍّ حَقَّهُ
+            </p>
             <p class="font-manrope text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-                Satu orang, sembilan ruang, satu sistem &mdash; Investor, Leader, Servant, Husband, Observer, Trader, Gamer, Reader, dan ruang di antaranya.
+                &ldquo;Sesungguhnya Rabbmu memiliki hak atasmu, dirimu memiliki hak atasmu, dan keluargamu memiliki hak atasmu. Maka berikanlah hak kepada setiap yang memiliki hak.&rdquo;
             </p>
             <div class="pt-4 flex flex-col sm:flex-row gap-4 items-center md:items-start justify-center md:justify-start">
                 <a href="#ruang" class="bg-primary text-on-primary px-8 py-3 rounded font-manrope text-label-caps hover:bg-on-primary-container transition-colors duration-300 w-full sm:w-auto text-center">
@@ -44,8 +47,8 @@
 
 <main class="max-w-[1200px] mx-auto px-6 md:px-16 py-16" id="ruang">
     <div class="mb-12">
-        <h2 class="font-serif-display text-headline-md text-on-surface mb-2">Learn. Build. Serve. Observe.</h2>
-        <p class="font-manrope text-body-md text-on-surface-variant max-w-2xl">To learn, to build, to serve, to observe &mdash; not four separate roles, but one discipline of presence: showing up fully wherever I stand, letting each space quietly teach the others, until what remains is simply one life, coherently lived.</p>
+        <h2 class="font-serif-display text-headline-md text-on-surface mb-2">Tawazun. Tasammuh. Consistent. Persistent.</h2>
+        <p class="font-manrope text-body-md text-on-surface-variant max-w-2xl">Orang yang dengan sengaja berusaha membangun sistem di tiap area hidupnya, alih-alih menjalani hidup secara acak.</p>
     </div>
 
     <div class="grid grid-cols-12 gap-8">

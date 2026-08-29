@@ -7,7 +7,10 @@
             <h2>&ldquo;Managing Projects by Day, Observing Markets by Night.&rdquo;</h2>
             <p>In the world of software development, data is everything. I have taken that same analytical rigor and applied it to the global financial markets. As a Market Observer, I don't just look at price charts; I study the underlying trends, macroeconomic shifts, and technological disruptions that drive value in the modern economy.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Ilustrasi abstrak visualisasi finansial/pasar'])
+            <figure>
+                <img src="{{ asset('images/illustration-market-observer.png') }}" alt="Ilustrasi abstrak Market Observer">
+                <figcaption>Ilustrasi abstrak visualisasi finansial/pasar</figcaption>
+            </figure>
 
             <h3>My Investment Philosophy: The Power of DCA</h3>
             <p>I am a firm believer in <strong>Dollar Cost Averaging (DCA)</strong>. Instead of trying to time the volatile market, I focus on consistency and long-term accumulation. By treating my portfolio like a well-managed project, I allocate resources systematically to ensure steady growth regardless of short-term market noise.</p>
@@ -29,7 +32,10 @@
             <h3>Let's Talk Strategy</h3>
             <p>Are you interested in market cycles, DCA strategies, or the intersection of tech and finance? I'm always open to discussing market insights and sharing perspectives on building a future-proof portfolio.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Potret AI-generated dan foto profil (placeholder)'])
+            <figure>
+                <img src="{{ asset('images/potret-elahady.png') }}" alt="Potret AI-generated Elahady">
+                <figcaption>Potret AI-generated Elahady</figcaption>
+            </figure>
         </div>
     </article>
 

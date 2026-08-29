@@ -5,7 +5,10 @@
         <p class="article-meta">Posted on March 2, 2026 &middot; by roziqrizal881992</p>
 
         <div class="article-body">
-            @include('partials.image-placeholder', ['label' => 'Tangkapan layar WhatsApp, 2 Maret 2026 20:10'])
+            <figure>
+                <img src="{{ asset('images/whatsapp-emas-dolar-rdpu.jpeg') }}" alt="Global conflict monitor, tensions monitor, dan rebalancing strategy">
+                <figcaption>Tangkapan layar WhatsApp, 2 Maret 2026 20:10</figcaption>
+            </figure>
 
             <blockquote>Pasar tidak menyukai ketidakpastian, apalagi bau mesiu. Dengan eskalasi mendadak antara Israel dan Iran di awal Maret 2026 ini, portofolio agresif mulai menunjukkan &lsquo;warna merahnya&rsquo;. Namun, bagi saya, ini bukan saatnya panik, melainkan saatnya mengaktifkan protokol mitigasi.</blockquote>
 

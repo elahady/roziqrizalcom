@@ -10,7 +10,10 @@
 
             <p>Beyond the technical side, I am a keen <strong>Market Observer</strong>. I enjoy analyzing industry trends and shifts in the global market, allowing me to bridge the gap between innovative code and real-world business demands.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Potret AI-generated dan foto profesional (placeholder)'])
+            <figure>
+                <img src="{{ asset('images/potret-elahady.png') }}" alt="Potret AI-generated Elahady">
+                <figcaption>Potret AI-generated Elahady</figcaption>
+            </figure>
         </div>
     </article>
 

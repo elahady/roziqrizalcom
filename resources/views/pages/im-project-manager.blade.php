@@ -7,7 +7,10 @@
             <h2>Professional Philosophy: The Kaizen Mindset</h2>
             <p>In the rapidly evolving landscape of software development, I serve as the vital link between ambitious business strategies and technical reality. Working within a <strong>Japanese technology firm</strong>, I have embraced the philosophy of <strong>Kaizen</strong> (continuous improvement). My goal is not just to &ldquo;finish projects,&rdquo; but to refine processes, elevate team performance, and ensure every sprint delivers superior value with high precision.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Ilustrasi abstrak konsep project management'])
+            <figure>
+                <img src="{{ asset('images/illustration-project-manager.png') }}" alt="Ilustrasi abstrak Project Manager">
+                <figcaption>Ilustrasi abstrak konsep project management</figcaption>
+            </figure>
 
             <h2>What I Do: Turning Complexity into Clarity</h2>
             <p>My daily routine is built on the pillars of <strong>Agile methodology</strong> and meticulous coordination. Here is how I drive projects forward:</p>

@@ -19,7 +19,16 @@
             <p>Peluncuran ini bukan sekadar seremoni. Kehadiran pejabat pemerintah daerah Lamongan di tengah para pakar falak memberikan sinyal kuat bahwa inovasi teknologi memiliki ruang yang sangat penting dalam mendukung akurasi ibadah umat. Dalam video di bawah ini, terlihat bagaimana antusiasme saat aplikasi ini diperkenalkan sebagai alat bantu hisab yang modern namun tetap patuh pada kaidah dan disiplin ilmu falak.</p>
 
             <h2>Di Balik Layar: Kekuatan Tim</h2>
-            @include('partials.image-placeholder', ['label' => 'Dua foto WhatsApp anggota tim (placeholder)'])
+            <div class="image-row">
+                <figure>
+                    <img src="{{ asset('images/tim-al-kaukaba-programmer-1.jpeg') }}" alt="Daud, Programmer Al-Kaukaba">
+                    <figcaption>Daud &mdash; Programmer</figcaption>
+                </figure>
+                <figure>
+                    <img src="{{ asset('images/tim-al-kaukaba-programmer-2.jpeg') }}" alt="Yuan, Programmer Al-Kaukaba">
+                    <figcaption>Yuan &mdash; Programmer</figcaption>
+                </figure>
+            </div>
             <p>Al-Kaukaba tidak lahir dari satu tangan. Ada kerja keras tim kecil yang solid di baliknya:</p>
             <ul>
                 <li><strong>1 Designer:</strong> Sosok yang memastikan antarmuka (UI) aplikasi tetap bersih, intuitif, dan nyaman dipandang.</li>

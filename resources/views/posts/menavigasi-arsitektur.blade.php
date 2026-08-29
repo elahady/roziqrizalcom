@@ -37,7 +37,16 @@
             <h2>Riyadhah Kolektif: Menempa Ketangguhan Melalui 14 Hari Ujian</h2>
             <p>Memasuki tahun 2026, setiap pengembang baru dihadapkan pada aksioma rilis yang semakin kompleks, di mana Google tidak lagi sekadar menjadi fasilitator, melainkan &ldquo;penjaga gawang&rdquo; yang sangat rigid. Salah satu rintangan yang paling menuntut kesabaran adalah kewajiban masa inkubasi selama 14 hari bagi akun personal baru melalui tahap <em>Closed Testing</em>. Dalam proses peluncuran Falak Al-Kaukaba, sistem mensyaratkan keterlibatan minimal 12 penguji yang harus aktif secara simultan.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Tangkapan layar WhatsApp, 14 Maret 2026 & grup tester Al-Kaukaba'])
+            <div class="image-row">
+                <figure>
+                    <img src="{{ asset('images/cover-menavigasi-arsitektur-falak-al-kaukaba.jpeg') }}" alt="Ilustrasi arsitektur rilis Falak Al-Kaukaba: workstation, birokrasi Play Store, group testing">
+                    <figcaption>Tangkapan layar WhatsApp, 14 Maret 2026</figcaption>
+                </figure>
+                <figure>
+                    <img src="{{ asset('images/grup-wa-tester-al-kaukaba.png') }}" alt="Grup WhatsApp Tester Aplikasi Al Kaukaba, 18 anggota">
+                    <figcaption>Grup tester Al-Kaukaba (18 anggota)</figcaption>
+                </figure>
+            </div>
 
             <p>Menanggapi tuntutan tersebut, saya akhirnya menghimpun sebuah kolektif relawan yang terdiri dari <strong>18 orang&mdash;termasuk saya sendiri&mdash;</strong>yang saya satukan dalam sebuah grup WhatsApp untuk mempermudah koordinasi, interaksi, serta pelaporan temuan teknis secara intensif setiap harinya. Fase ini saya pandang sebagai bentuk <strong><em>riyadhah</em></strong> atau pelatihan kedisiplinan bagi pengembang untuk memastikan aplikasi benar-benar matang dan stabil sebelum akhirnya dilepas ke khalayak luas. Rasa syukur dan apresiasi setinggi-tingginya saya haturkan kepada seluruh relawan yang telah meluangkan waktu dan energinya untuk mengawal perjalanan ini; tanpa sinergi kolektif ini, langkah Falak Al-Kaukaba menuju publikasi tentu akan terasa jauh lebih sunyi dan terjal.</p>
 
@@ -48,12 +57,26 @@
 
             <p>Masa tunggu 5 hari ini menjadi ujian terakhir bagi daya tahan kita. Seluruh persiapan teknis, mulai dari pemilihan bahasa pemrograman Kotlin dan Golang hingga manajemen basis data, kini berada di tangan evaluator eksternal. Tidak ada lagi baris kode yang bisa diubah, tidak ada lagi interaksi pengujian yang bisa ditambahkan. Kita hanya bisa menunggu persetujuan akses produksi ini sebagai legitimasi akhir atas seluruh <em>mujahadah</em> yang telah dilakukan selama berminggu-minggu.</p>
 
+            <figure>
+                <img src="{{ asset('images/play-console-closed-testing-checklist.jpeg') }}" alt="Google Play Console: Apply for access to production, checklist closed testing 12 tester selama 14 hari">
+                <figcaption>Google Play Console &mdash; checklist Apply for access to production</figcaption>
+            </figure>
+
             <div class="core-insight"><strong>Core Insight:</strong> <em>Kecepatan dalam menulis kode harus dibarengi dengan ketenangan dalam menunggu hasil; karena dalam labirin rilis, sabar adalah bagian dari spesifikasi teknis yang tidak tertulis.</em></div>
 
             <h2>Muru'ah Digital: Menjaga Integritas Antara Kode dan Kebijakan Privasi</h2>
             <p>Selain pengujian fungsional, terdapat kewajiban moral dan teknis dalam mendeklarasikan keamanan data (<em>Data Safety</em>) yang tidak mentoleransi adanya diskrepansi. Sebagai contoh, penggunaan Firebase Auth mewajibkan kami untuk secara jujur mencentang kategori <em>Personal Info</em> pada formulir keamanan; ketidaksesuaian sekecil apa pun antara praktik di dalam kode dan pernyataan tertulis akan memicu penolakan sistem secara otomatis. Hal ini sejalan dengan prinsip transparansi ekosistem, di mana dokumen <em>Privacy Policy</em> harus mengurai secara eksplisit keterlibatan layanan pihak ketiga seperti Firebase, AdMob, hingga Google Analytics tanpa menyisakan ruang bagi ambiguitas.</p>
 
-            @include('partials.image-placeholder', ['label' => 'Tangkapan layar issue-data dan issue-data-2 (placeholder)'])
+            <div class="image-row">
+                <figure>
+                    <img src="{{ asset('images/issue-data-1.png') }}" alt="Publishing overview: 1 issue found - Invalid Data safety declaration">
+                    <figcaption>Issue found &mdash; Invalid Data safety declaration</figcaption>
+                </figure>
+                <figure>
+                    <img src="{{ asset('images/issue-data-2.png') }}" alt="Detail issue Invalid Data safety declaration di Google Play Console">
+                    <figcaption>Detail issue &mdash; Data safety</figcaption>
+                </figure>
+            </div>
 
             <p>Kedaulatan pengguna atas data mereka juga menjadi fokus utama melalui kewajiban fitur penghapusan akun (<em>Account Deletion</em>). Kami menyediakan instruksi yang jelas bagi pengguna untuk dapat menghapus identitas mereka secara permanen, sebuah langkah yang menuntut integrasi antara kebijakan privasi dan fungsionalitas aplikasi yang nyata.</p>
 
