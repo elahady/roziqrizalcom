@@ -101,17 +101,17 @@
             <p>Kini, di ambang penantian <em>review</em> Google, saya menyerahkan segala hasilnya kepada Sang Maha Pengatur. Menyempurnakan aplikasi ini adalah pencapaian teknis, namun menunggu takdir rilisnya di malam yang mulia adalah sebuah perjalanan spiritual. Semoga catatan sejarah ini menjadi manfaat bagi Anda yang sedang berjuang di garis depan pengembangan aplikasi, dan semoga setiap baris kode kita senantiasa bernilai ibadah.</p>
         </div>
 
-        <section class="comments" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 24px;">
+        <section class="comments">
             <h3>2 Comments</h3>
 
-            <div style="margin-bottom: 18px;">
-                <p style="margin: 0 0 4px;"><strong>Harleypug</strong> <span style="color:#888; font-size:.85rem;">&mdash; March 23, 2026 at 3:47 am</span></p>
-                <p style="margin: 0;">&ldquo;I started writing down one thing at the end of every day &mdash; what I actually managed to do. Not a to-do list, not plans. Just one small win. It's surprising how quickly it shifts your perspective.&rdquo;</p>
+            <div class="comment-item">
+                <p class="comment-author"><strong>Harleypug</strong> <span class="comment-meta">&mdash; March 23, 2026 at 3:47 am</span></p>
+                <p>&ldquo;I started writing down one thing at the end of every day &mdash; what I actually managed to do. Not a to-do list, not plans. Just one small win. It's surprising how quickly it shifts your perspective.&rdquo;</p>
             </div>
 
-            <div style="margin-bottom: 18px;">
-                <p style="margin: 0 0 4px;"><strong>roziqrizal881992</strong> <span style="color:#888; font-size:.85rem;">&mdash; March 25, 2026 at 7:24 am</span></p>
-                <p style="margin: 0;">&ldquo;Totally agree! It's all about focusing on progress, not just the process. If you don't mind sharing, what's the most memorable 'small win' you've written down this week?&rdquo;</p>
+            <div class="comment-item">
+                <p class="comment-author"><strong>roziqrizal881992</strong> <span class="comment-meta">&mdash; March 25, 2026 at 7:24 am</span></p>
+                <p>&ldquo;Totally agree! It's all about focusing on progress, not just the process. If you don't mind sharing, what's the most memorable 'small win' you've written down this week?&rdquo;</p>
             </div>
         </section>
     </article>

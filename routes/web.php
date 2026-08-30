@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Support\Posts;
 use Illuminate\Support\Facades\Route;
 
 // Home / personal branding landing
@@ -7,7 +9,7 @@ Route::view('/', 'home')->name('home');
 Route::view('/home', 'home');
 
 // Blog index (was previously the homepage)
-Route::view('/journal', 'journal')->name('journal');
+Route::get('/journal', fn () => view('journal', ['posts' => Posts::byCategory('blog')]))->name('journal');
 
 // Static profile & content pages
 Route::view('/im-project-manager', 'pages.im-project-manager');
@@ -22,20 +24,13 @@ Route::view('/the-bridge', 'pages.the-bridge');
 Route::view('/anonymized-case-studies', 'pages.anonymized-case-studies');
 
 // Category archives
-Route::view('/category/daily-jurnal-trading', 'category.daily-jurnal-trading');
-Route::view('/category/daily-jurnal-trading/btcusd', 'category.btcusd');
+Route::get('/category/daily-jurnal-trading', fn () => view('category.daily-jurnal-trading', ['posts' => Posts::byCategory('btcusd')]));
+Route::get('/category/daily-jurnal-trading/btcusd', fn () => view('category.btcusd', ['posts' => Posts::byCategory('btcusd')]));
 
-// Blog posts (category: Blog)
-Route::view('/firsst-post', 'posts.firsst-post');
-Route::view('/al-kaukaba-ikhtiar-mendekatkan-langit-ke-dalam-genggaman', 'posts.al-kaukaba');
-Route::view('/emas-dolar-dan-rdpu-mengapa-safe-haven-adalah-kunci-saat-genderang-perang-ditabuh', 'posts.emas-dolar-rdpu');
-Route::view(
-    '/menavigasi-arsitektur-rilis-aplikasi-falak-al-kaukaba-sebagai-monumen-pembelajaran-bagi-software-developer-di-labirin-google-play-store',
-    'posts.menavigasi-arsitektur'
-);
-
-// Trading journal posts (category: Daily Jurnal Trading > BTCUSD)
-Route::view('/btcusd-the-power-of-patience-executing-the-masterplan-setting-the-h4-demand-trap', 'posts.btcusd-power-of-patience');
-Route::view('/btcusd-the-critical-lesson-when-ego-overrides-the-plan', 'posts.btcusd-critical-lesson');
-Route::view('/btcusd-rabu-18-maret-2026', 'posts.btcusd-rabu-18-maret');
-Route::view('/btcusd-daily-trading-jurnal-16-maret-2026', 'posts.btcusd-senin-16-maret');
+// Blog & trading journal posts — metadata (title, date, excerpt, category)
+// lives in app/Support/Posts.php, the single source of truth also used by
+// the journal/category listings above. Adding a post = new view + one entry
+// there, nothing to add here.
+Route::get('/{slug}', [PostController::class, 'show'])
+    ->where('slug', implode('|', array_map(fn ($slug) => preg_quote($slug, '#'), array_keys(Posts::all()))))
+    ->name('post.show');

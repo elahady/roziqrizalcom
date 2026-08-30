@@ -63,10 +63,7 @@
             <div class="core-insight"><strong>Core Insight:</strong> &ldquo;Trading bukan soal menebak masa depan, tapi soal mengelola probabilitas dengan disiplin yang istiqomah. Lebih baik kehilangan peluang daripada kehilangan modal.&rdquo;</div>
         </div>
 
-        <section class="comments" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 24px;">
-            <h3>Comments</h3>
-            <p style="color:#888;">Tidak ada komentar yang ditampilkan pada halaman asli.</p>
-        </section>
+        @include('partials.no-comments', ['heading' => 'Comments', 'message' => 'Tidak ada komentar yang ditampilkan pada halaman asli.'])
     </article>
 
 </x-layout>

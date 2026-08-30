@@ -271,6 +271,19 @@ img { max-width: 100%; display: block; }
 .article-body h2 { margin-top: 34px; }
 .article-body h3 { margin-top: 26px; }
 
+.comments {
+    margin-top: 40px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 24px;
+}
+
+.comments-empty { color: var(--muted); }
+
+.comment-item { margin-bottom: 18px; }
+.comment-item p { margin: 0; }
+.comment-item .comment-author { margin: 0 0 4px; }
+.comment-item .comment-meta { color: var(--muted); font-size: 0.85rem; }
+
 .article-body blockquote {
     border-left: 4px solid var(--accent);
     background: var(--surface-low);

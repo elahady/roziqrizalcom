@@ -46,10 +46,7 @@
             <div class="core-insight"><strong>Market Observer Note:</strong> &ldquo;Understanding when fundamentals align with technical levels removes trading anxiety&rdquo; fundamentally shifts decision-making quality.</div>
         </div>
 
-        <section class="comments" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 24px;">
-            <h3>Leave a Reply</h3>
-            <p style="color:#888;">Belum ada komentar.</p>
-        </section>
+        @include('partials.no-comments')
     </article>
 
 </x-layout>

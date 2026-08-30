@@ -1,5 +1,13 @@
 # roziqrizal.com — Personal Branding Website
 
+## Konvensi kode & konten
+
+Baca [README.md](README.md) **sebelum** menambah halaman, post, atau partial
+baru — di situ ada aturan single-source-of-truth untuk metadata post
+(`app/Support/Posts.php`), partial yang wajib dipakai ulang
+(`post-card`, `no-comments`), dan aturan no-inline-style. File ini (CLAUDE.md)
+fokus ke tema/narasi situs, bukan konvensi teknis.
+
 ## Tema Inti
 
 > "Saya membangun sistem untuk setiap peran dalam hidup saya — dari uang sampai hati, dari kerja sampai diam."

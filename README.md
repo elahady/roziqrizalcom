@@ -1,60 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# roziqrizal.com
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Personal branding website (Laravel). Lihat [CLAUDE.md](CLAUDE.md) untuk tema
+inti situs ("Denah Hidup" / satu orang, banyak ruang, satu sistem) dan catatan
+desain. File ini berisi **konvensi kode & konten** — baca sebelum menambah
+halaman, post, atau partial baru.
 
-## About Laravel
+## Struktur & filosofi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Situs ini sengaja **tanpa database untuk konten** dan **tanpa admin panel** —
+setiap halaman/post di-authoring langsung sebagai file Blade dan di-commit ke
+git. Ini keputusan sadar untuk volume konten personal (puluhan post), bukan
+utang teknis. Kalau nanti volume tumbuh jauh lebih besar dan mulai butuh
+draft/schedule/edit dari luar git, itu baru jadi trigger untuk naik level ke
+model+database.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ada dua jenis halaman:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Halaman statis murni** (Rooms, About, Privacy Policy, dll.) — tidak
+   tampil di listing/kategori manapun. Cukup:
+   - Buat view di `resources/views/pages/<nama>.blade.php`.
+   - Daftarkan `Route::view('/slug', 'pages.nama')` di `routes/web.php`.
 
-## Learning Laravel
+2. **Post** (blog & trading journal) — tampil di halaman Journal dan/atau
+   arsip kategori, jadi metadatanya (judul, tanggal, excerpt, kategori) tidak
+   boleh diketik ulang di banyak file. Lihat bagian berikut.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Menambah post baru
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Post metadata punya **satu sumber kebenaran**: [`app/Support/Posts.php`](app/Support/Posts.php).
+Routing (`PostController`) dan semua listing (Journal, arsip kategori) baca
+dari array ini — jangan sentuh `routes/web.php` untuk post baru.
 
-## Laravel Sponsors
+Langkah menambah post:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Buat view di `resources/views/posts/<nama-file>.blade.php` (isi bebas,
+   pakai `<x-layout>` seperti post lain).
+2. Tambah satu entry di `Posts::all()`:
+   ```php
+   'slug-url-post-ini' => [
+       'view' => 'posts.nama-file',
+       'title' => 'Judul Post',
+       'date' => 'Month DD, YYYY',
+       'excerpt' => 'Ringkasan singkat, diakhiri …',
+       'category' => 'blog', // atau 'btcusd', atau kategori baru
+   ],
+   ```
+3. Selesai — `/slug-url-post-ini` otomatis ke-route ke view-nya, dan post
+   otomatis muncul di listing kategori yang sesuai (lihat
+   `Posts::byCategory()` yang dipakai `routes/web.php` untuk halaman Journal
+   & arsip kategori).
 
-### Premium Partners
+Jangan bikin `Route::view()` baru per post, dan jangan copy-paste markup
+`<article class="post-card">` di listing manapun — pakai
+`@include('partials.post-card', ['slug' => $slug, 'post' => $post])`, yang
+sudah otomatis dipakai oleh `journal.blade.php` dan
+`partials/trading-post-list.blade.php` lewat `@foreach ($posts as $slug =>
+$post)`.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Partial yang wajib dipakai ulang
 
-## Contributing
+- **`partials.post-card`** — satu kartu post di listing (judul + tanggal +
+  excerpt + link). Dipakai di `journal.blade.php` dan
+  `partials/trading-post-list.blade.php`.
+- **`partials.no-comments`** — placeholder "belum ada komentar" di akhir
+  artikel. Default: heading "Leave a Reply", pesan "Belum ada komentar.".
+  Override lewat prop kalau perlu teks beda:
+  ```blade
+  @include('partials.no-comments', ['heading' => 'Comments', 'message' => 'Pesan custom.'])
+  ```
+  Kalau sebuah post memang punya komentar riil (bukan placeholder), tulis
+  manual dengan class `.comment-item` / `.comment-author` / `.comment-meta`
+  (lihat `posts/menavigasi-arsitektur.blade.php`), jangan pakai partial ini.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Styling
 
-## Code of Conduct
+- **Jangan pakai atribut `style="..."` inline di Blade.** Tambahkan class ke
+  stylesheet yang relevan. Ini supaya satu perubahan visual (warna border,
+  spacing) tidak perlu diulang di setiap file post.
+- Ada **dua stylesheet** yang hidup berdampingan (transisi desain, bukan
+  duplikasi yang perlu buru-buru disatukan):
+  - `resources/css/app.css` — desain acuan/source-of-truth terbaru (palet
+    sage/Material-3, token warna `--color-primary` dll.), dipakai homepage.
+  - `public/css/app.css` — layout lama, dipakai halaman lain (Journal,
+    posts, pages, category), sudah direstyle agar konsisten dengan homepage
+    lewat token warna sendiri (`--border-light`, `--muted`, dll.).
+  Kalau menambah style untuk halaman non-homepage, tambahkan ke
+  `public/css/app.css` dan pakai variabel token yang sudah ada, bukan warna
+  hex baru.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Menjalankan lokal
 
-## Security Vulnerabilities
+```
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Test cepat setelah menambah/ubah post atau route:
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# roziqrizalcom" 
+```
+php artisan route:list
+```

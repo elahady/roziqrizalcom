@@ -45,10 +45,7 @@
             <blockquote>&ldquo;Trading is not about predicting the future, but managing probabilities with istiqomah discipline.&rdquo;</blockquote>
         </div>
 
-        <section class="comments" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 24px;">
-            <h3>Leave a Reply</h3>
-            <p style="color:#888;">Belum ada komentar.</p>
-        </section>
+        @include('partials.no-comments')
     </article>
 
 </x-layout>
