@@ -18,3 +18,11 @@ Saat memberi saran konten, struktur navigasi, atau desain baru, prioritaskan ops
 
 - Desain acuan (source of truth) ada di homepage — palet sage/Material-3 (`resources/css/app.css`, token warna `--color-primary` dll.), font Libre Caslon Text (judul/serif) + Manrope (body/UI).
 - Halaman lain (Journal, About, dll.) memakai layout lama ([resources/views/components/layout.blade.php](resources/views/components/layout.blade.php) + `public/css/app.css`) yang sudah direstyle agar konsisten dengan palet & font homepage.
+
+## Shortcut Project (lokal, khusus mesin ini)
+
+Saat user menyebut nama singkat berikut, buka/kerjakan di direktori terkait:
+
+- "project android" → `C:\Project\Personal\alkaukabaandroid`
+- "web alkaukaba" → `C:\xampp\htdocs\alkaukabaweb`
+- "web personal" → `C:\xampp\htdocs\roziqrizalcom`
