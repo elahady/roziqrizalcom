@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: roziqrizalcom
+    ports:
+      - "8080:8080"
+    volumes:
+      - storage:/var/www/html/storage
+      - sqlite-db:/var/www/html/database
+    env_file:
+      - .env.production
+    restart: unless-stopped
+
+volumes:
+  storage:
+  sqlite-db:
