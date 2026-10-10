@@ -8,6 +8,12 @@ baru — di situ ada aturan single-source-of-truth untuk metadata post
 (`post-card`, `no-comments`), dan aturan no-inline-style. File ini (CLAUDE.md)
 fokus ke tema/narasi situs, bukan konvensi teknis.
 
+## Aturan Kerja
+
+**Setiap perubahan di repo ini harus selalu di-commit DAN di-push** — tidak
+menunggu diminta secara eksplisit tiap kali, berlaku untuk perubahan sekecil apa pun
+(kode, konten, dokumentasi).
+
 ## Deploy
 
 Push ke GitHub **tidak** otomatis deploy. Cara deploy ke VM rumah ada di
