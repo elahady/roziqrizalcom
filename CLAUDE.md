@@ -14,6 +14,9 @@ fokus ke tema/narasi situs, bukan konvensi teknis.
 menunggu diminta secara eksplisit tiap kali, berlaku untuk perubahan sekecil apa pun
 (kode, konten, dokumentasi).
 
+**Deploy ke VM hanya dilakukan saat diminta.** Push ke GitHub tidak otomatis deploy,
+dan deploy tidak ikut otomatis setelah commit/push — tunggu user menyuruh.
+
 ## Deploy
 
 Push ke GitHub **tidak** otomatis deploy. Cara deploy ke VM rumah ada di
