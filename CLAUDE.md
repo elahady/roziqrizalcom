@@ -8,6 +8,11 @@ baru — di situ ada aturan single-source-of-truth untuk metadata post
 (`post-card`, `no-comments`), dan aturan no-inline-style. File ini (CLAUDE.md)
 fokus ke tema/narasi situs, bukan konvensi teknis.
 
+## Deploy
+
+Push ke GitHub **tidak** otomatis deploy. Cara deploy ke VM rumah ada di
+[DEPLOY.md](DEPLOY.md) — baca sebelum deploy.
+
 ## Tema Inti
 
 > "Saya membangun sistem untuk setiap peran dalam hidup saya — dari uang sampai hati, dari kerja sampai diam."
