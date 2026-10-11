@@ -38,7 +38,7 @@
         <div class="md:w-2/5 relative">
             <div class="w-full aspect-square rounded-full soft-gradient opacity-60 mix-blend-multiply absolute -right-8 -top-8 filter blur-3xl"></div>
             <div class="relative z-10 w-full aspect-square rounded-full overflow-hidden soft-gradient ambient-glow border border-surface-variant">
-                <img src="{{ asset('images/potret-elahady-hero.jpg') }}" alt="Potret ilustrasi Muhammad Roziq Rizal Al Ahadi, dibuat dengan AI" width="800" height="800" class="w-full h-full object-cover mix-blend-multiply">
+                <img src="{{ asset('images/potret-elahady-lingkaran.jpg') }}" alt="Potret ilustrasi Muhammad Roziq Rizal Al Ahadi, dibuat dengan AI" width="800" height="800" class="w-full h-full object-cover mix-blend-multiply">
             </div>
         </div>
     </div>
