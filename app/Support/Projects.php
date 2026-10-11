@@ -40,13 +40,16 @@ class Projects
                 'rooms' => 'Lintas ruang',
                 'tech' => ['Kotlin', 'Jetpack Compose', 'Laravel', 'Livewire', 'MySQL', 'Docker'],
                 'screens' => [
-                    ['file' => 'habitflow-hari-ini.jpg', 'alt' => 'Layar Hari ini di Habitflow: ringkasan level, streak, dan daftar habit', 'caption' => 'Hari ini'],
-                    ['file' => 'habitflow-kontribusi.jpg', 'alt' => 'Layar Kontribusi di Habitflow: heatmap harian ala GitHub', 'caption' => 'Kontribusi'],
-                    ['file' => 'habitflow-habit.jpg', 'alt' => 'Layar Kelola habit di Habitflow', 'caption' => 'Kelola habit'],
+                    ['file' => 'habitflow-android-hari-ini.jpg', 'alt' => 'Layar Hari ini di Habitflow Android: jadwal Sekarang dan Berikutnya, berat, tensi, dan progres habit', 'caption' => 'Hari ini'],
+                    ['file' => 'habitflow-android-kerja.jpg', 'alt' => 'Layar Kerja di Habitflow Android: daftar follow-up per status', 'caption' => 'Kerja'],
+                    ['file' => 'habitflow-android-progres.jpg', 'alt' => 'Layar Progres di Habitflow Android: streak dan heatmap kontribusi habit', 'caption' => 'Progres'],
                 ],
                 // Tangkapan layar versi web. Kosong = barisnya tidak ditampilkan.
                 // Isi dengan ['file' => ..., 'alt' => ..., 'caption' => ...] setelah gambarnya ada di public/images/karya/.
-                'web_screens' => [],
+                'web_screens' => [
+                    ['file' => 'habitflow-web-habit.jpg', 'alt' => 'Halaman Habit di Habitflow web: habit dan to-do hari ini', 'caption' => 'Habit hari ini'],
+                    ['file' => 'habitflow-web-follow-up.jpg', 'alt' => 'Halaman Follow-up Kerja di Habitflow web: Inbox dan Aktif', 'caption' => 'Follow-up kerja'],
+                ],
             ],
             'al-kaukaba' => [
                 'name' => 'Al-Kaukaba',

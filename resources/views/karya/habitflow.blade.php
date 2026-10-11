@@ -211,12 +211,12 @@
     <section id="layar" class="max-w-[1200px] mx-auto px-6 md:px-16 py-16 md:py-20">
         <div class="mb-12 space-y-2">
             <h2 class="font-serif-display text-headline-md text-on-surface">Tangkapan layar</h2>
-            <p class="font-manrope text-sm text-tertiary">Tangkapan layar Android adalah versi awal (5 Oktober 2026). Tampilannya sekarang sudah jauh bertambah.</p>
+            <p class="font-manrope text-sm text-tertiary">Semua tangkapan layar memakai data contoh, bukan data pribadi.</p>
         </div>
 
         @if ($webScreens)
             <h3 class="mb-6 font-manrope text-label-caps uppercase text-on-primary-container">Web</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 @foreach ($webScreens as $screen)
                     <figure class="space-y-4">
                         <div class="rounded-xl border border-outline-variant overflow-hidden bg-white ambient-glow">
