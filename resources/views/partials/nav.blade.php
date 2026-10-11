@@ -8,6 +8,8 @@
 
             <li class="{{ $isActive('journal') }}"><a href="{{ url('/journal') }}">Journal</a></li>
 
+            <li class="{{ $isActive('karya/*') }}"><a href="{{ url('/#karya') }}">Karya</a></li>
+
             <li class="has-children {{ $isActive('im-project-manager') }}">
                 <a href="{{ url('/im-project-manager') }}">I'm Project Manager</a>
                 <ul class="dropdown">

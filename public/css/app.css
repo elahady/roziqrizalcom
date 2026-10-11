@@ -494,3 +494,60 @@ img { max-width: 100%; display: block; }
     padding: 10px 16px;
     margin-bottom: 20px;
 }
+
+/* Portfolio ("Karya") detail pages */
+.article-body .image-row-phone {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.article-body .image-row-phone figure {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 200px;
+}
+
+.article-body .tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 18px 0;
+}
+
+.article-body .tag-list li {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin: 0;
+}
+
+.article-body .tag-list li.tag-status {
+    background: var(--accent-container);
+    color: var(--accent-container-text);
+    border-color: var(--accent-container);
+}
+
+.cta-link {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border-radius: 4px;
+    padding: 12px 28px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.cta-link:hover {
+    background: var(--accent-container-text);
+    color: var(--accent-contrast);
+}

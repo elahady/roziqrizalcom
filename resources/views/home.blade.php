@@ -65,12 +65,28 @@
     </div>
 </main>
 
+<hr class="border-t border-surface-variant my-4 opacity-50 max-w-[1200px] mx-auto">
+
+<section class="max-w-[1200px] mx-auto px-6 md:px-16 py-16" id="karya">
+    <div class="mb-12">
+        <h2 class="font-serif-display text-headline-md text-on-surface mb-2">Karya</h2>
+        <p class="font-manrope text-body-md text-on-surface-variant max-w-2xl">Sistem yang saya bangun untuk menunaikan hak setiap ruang.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        @foreach (\App\Support\Projects::all() as $slug => $project)
+            @include('partials.project-card', ['slug' => $slug, 'project' => $project])
+        @endforeach
+    </div>
+</section>
+
 <footer class="bg-surface-container border-t border-secondary/10 py-16 md:py-24 w-full">
     <div class="max-w-[1200px] mx-auto px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-6">
         <div class="font-serif-display text-headline-lg-mobile md:text-headline-md text-on-surface font-bold text-center md:text-left">
             Muhammad Roziq Rizal Al Ahadi
         </div>
         <div class="flex flex-wrap justify-center gap-8">
+            <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/#karya') }}">Karya</a>
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/journal') }}">Journal</a>
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/about-me') }}">About</a>
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="https://www.linkedin.com/in/roziq-rizal/" target="_blank" rel="noopener">LinkedIn</a>
