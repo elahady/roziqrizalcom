@@ -22,7 +22,8 @@ class Projects
      *     status_label: string,
      *     rooms: string,
      *     tech: list<string>,
-     *     screens: list<array{file: string, alt: string}>,
+     *     screens: list<array{file: string, alt: string, caption?: string}>,
+     *     web_screens?: list<array{file: string, alt: string, caption?: string}>,
      *     view?: string,
      * }>
      */
@@ -39,10 +40,13 @@ class Projects
                 'rooms' => 'Lintas ruang',
                 'tech' => ['Kotlin', 'Jetpack Compose', 'Laravel', 'Livewire', 'MySQL', 'Docker'],
                 'screens' => [
-                    ['file' => 'habitflow-hari-ini.jpg', 'alt' => 'Layar Hari ini di Habitflow: ringkasan level, streak, dan daftar habit'],
-                    ['file' => 'habitflow-kontribusi.jpg', 'alt' => 'Layar Kontribusi di Habitflow: heatmap harian ala GitHub'],
-                    ['file' => 'habitflow-habit.jpg', 'alt' => 'Layar Kelola habit di Habitflow'],
+                    ['file' => 'habitflow-hari-ini.jpg', 'alt' => 'Layar Hari ini di Habitflow: ringkasan level, streak, dan daftar habit', 'caption' => 'Hari ini'],
+                    ['file' => 'habitflow-kontribusi.jpg', 'alt' => 'Layar Kontribusi di Habitflow: heatmap harian ala GitHub', 'caption' => 'Kontribusi'],
+                    ['file' => 'habitflow-habit.jpg', 'alt' => 'Layar Kelola habit di Habitflow', 'caption' => 'Kelola habit'],
                 ],
+                // Tangkapan layar versi web. Kosong = barisnya tidak ditampilkan.
+                // Isi dengan ['file' => ..., 'alt' => ..., 'caption' => ...] setelah gambarnya ada di public/images/karya/.
+                'web_screens' => [],
             ],
             'al-kaukaba' => [
                 'name' => 'Al-Kaukaba',
