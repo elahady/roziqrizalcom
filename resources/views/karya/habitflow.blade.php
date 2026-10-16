@@ -59,10 +59,10 @@
             'body' => 'Tambah, ubah, dan tandai habit wajib sesuai hidup Anda. Ada level harian, streak, dan heatmap kontribusi.',
         ],
         [
-            'variant' => 'plain', 'col' => 'md:col-span-4', 'platform' => 'Android',
+            'variant' => 'plain', 'col' => 'md:col-span-4', 'platform' => 'Android, web hanya baca',
             'title' => 'Jadwal harian',
             'tagline' => 'Susun blok waktu sendiri.',
-            'body' => 'Patokannya jam tetap atau waktu sholat. Tiap blok punya tingkat pengingat sendiri, dari notifikasi senyap sampai alarm.',
+            'body' => 'Patokannya jam tetap atau waktu sholat. Tiap blok punya tingkat pengingat sendiri, dari notifikasi senyap sampai alarm. Di web, blok yang sedang berjalan dan berikutnya tampil di Beranda.',
         ],
         [
             'variant' => 'plain', 'col' => 'md:col-span-4', 'platform' => 'Android',
@@ -71,16 +71,28 @@
             'body' => 'Hanya muncul di jam kerja yang Anda tentukan, dan berhenti sendiri kalau diabaikan.',
         ],
         [
-            'variant' => 'plain', 'col' => 'md:col-span-6', 'platform' => 'Android',
+            'variant' => 'plain', 'col' => 'md:col-span-6', 'platform' => 'Android, web hanya baca',
             'title' => 'Kesehatan',
             'tagline' => 'Angka sebagai informasi, bukan diagnosis.',
-            'body' => 'Langkah dari Health Connect, berat badan, dan tensi, lengkap dengan kategorinya.',
+            'body' => 'Langkah dari Health Connect, berat badan, dan tensi, lengkap dengan kategorinya. Dari angka itu app menyarankan satu fokus untuk hari ini, dan grafiknya bisa dilihat di web.',
         ],
         [
             'variant' => 'plain', 'col' => 'md:col-span-6', 'platform' => 'Android',
             'title' => 'Kalender dan acara rutin',
             'tagline' => 'Satu agenda, tanpa notifikasi ganda.',
             'body' => 'Acara Habitflow dan kalender HP tampil bersama. Hanya acara Habitflow yang diingatkan 15 menit sebelumnya.',
+        ],
+        [
+            'variant' => 'plain', 'col' => 'md:col-span-6', 'platform' => 'Android dan web',
+            'title' => 'Rekap harian dan catatan EOD',
+            'tagline' => 'Hari kerja ditutup dengan angka, bukan perasaan.',
+            'body' => 'Web menampilkan tingkat selesai, rencana besok, dan catatan EOD yang sinkron dengan HP. Kalau dua perangkat menulis catatan berbeda, keduanya dipertahankan.',
+        ],
+        [
+            'variant' => 'plain', 'col' => 'md:col-span-6', 'platform' => 'Android dan web',
+            'title' => 'Ringkasan dari Claude',
+            'tagline' => 'Email pagi dirangkum sebelum kerja dimulai.',
+            'body' => 'Tiap pagi Claude merangkum email yang belum dibaca lalu menuliskannya ke Habitflow, sebagai kartu baca-saja di halaman Kerja. Saat ini baru saya pakai sendiri.',
         ],
     ];
 
@@ -252,7 +264,7 @@
             <div class="space-y-3 max-w-xl">
                 <span class="block font-manrope text-label-caps uppercase text-on-primary-container">Status</span>
                 <h2 class="font-serif-display text-headline-md text-on-surface">Dikembangkan aktif</h2>
-                <p class="font-manrope text-body-md text-on-surface-variant">Versi web sudah bisa dibuka dengan email atau akun Google. Aplikasi Android belum dirilis ke Play Store. Jadwal harian, kesehatan, dan kalender sedang menyusul ke web.</p>
+                <p class="font-manrope text-body-md text-on-surface-variant">Versi web sudah bisa dibuka dengan email atau akun Google. Aplikasi Android belum dirilis ke Play Store. Jadwal dan kesehatan sudah bisa dilihat di web, tetapi disusun dan dicatat dari Android. Kalender masih menyusul ke web.</p>
             </div>
             <a href="{{ $webUrl }}" target="_blank" rel="noopener" class="shrink-0 bg-primary text-on-primary px-8 py-3 rounded font-manrope text-label-caps uppercase hover:bg-on-primary-container transition-colors duration-300 text-center">Buka Habitflow Web &rarr;</a>
         </div>

@@ -47,8 +47,12 @@ class Projects
                 // Tangkapan layar versi web. Kosong = barisnya tidak ditampilkan.
                 // Isi dengan ['file' => ..., 'alt' => ..., 'caption' => ...] setelah gambarnya ada di public/images/karya/.
                 'web_screens' => [
-                    ['file' => 'habitflow-web-habit.jpg', 'alt' => 'Halaman Habit di Habitflow web: habit dan to-do hari ini', 'caption' => 'Habit hari ini'],
-                    ['file' => 'habitflow-web-follow-up.jpg', 'alt' => 'Halaman Follow-up Kerja di Habitflow web: Inbox dan Aktif', 'caption' => 'Follow-up kerja'],
+                    ['file' => 'habitflow-web-beranda.jpg', 'alt' => 'Beranda Habitflow web: fokus kesehatan hari ini dan kartu jadwal Sekarang dan Berikutnya', 'caption' => 'Beranda'],
+                    ['file' => 'habitflow-web-habit.jpg', 'alt' => 'Halaman Habit di Habitflow web: kartu habit, to-do, dan streak, lalu daftar habit hari ini', 'caption' => 'Habit hari ini'],
+                    ['file' => 'habitflow-web-kontribusi.jpg', 'alt' => 'Heatmap kontribusi Habitflow web: gabungan 53 minggu dan per habit', 'caption' => 'Kontribusi'],
+                    ['file' => 'habitflow-web-follow-up.jpg', 'alt' => 'Halaman Rekap hari ini di Habitflow web: ringkasan follow-up selesai dan Ringkasan dari Claude', 'caption' => 'Rekap kerja'],
+                    ['file' => 'habitflow-web-kesehatan.jpg', 'alt' => 'Bagian Kesehatan di Habitflow web: grafik berat badan, langkah 7 hari, dan tensi', 'caption' => 'Kesehatan'],
+                    ['file' => 'habitflow-web-tugas-rumah.jpg', 'alt' => 'Halaman Tugas Rumah di Habitflow web: tugas bersama pasangan dengan penanggung jawab', 'caption' => 'Tugas Rumah'],
                 ],
             ],
             'al-kaukaba' => [
