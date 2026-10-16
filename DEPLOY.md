@@ -1,7 +1,7 @@
 # Deploy — cara kerja dan cara lanjut dari sesi lain
 
 Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa deploy
-`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026.
+`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026, diperbarui 16 Oktober 2026.
 
 ## Fakta penting
 
@@ -16,12 +16,15 @@ Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa dep
 
 ## Akses VM
 
-- SSH: `ssh elahady@<ip-vm>` — key-based auth sudah di-setup dari PC Windows ini
-  (`~/.ssh/id_ed25519`), tidak perlu password.
-- **IP VM bisa berubah** tiap VM restart (DHCP dari Hyper-V Default Switch). Cek IP
-  terkini lewat Hyper-V Manager → Connect → login → `ip a` (baris `inet` di `eth0`).
-  IP terakhir yang diketahui (10 Oktober 2026): `172.23.192.247` — **jangan asumsikan
-  masih benar** kalau sudah lama tidak dipakai.
+- SSH: `ssh elahady@homeserver-linux.mshome.net` — key-based auth sudah di-setup dari
+  PC Windows ini (`~/.ssh/id_ed25519`), tidak perlu password. Pakai nama host ini, bukan
+  IP: nama `*.mshome.net` di-resolve oleh Hyper-V Default Switch, jadi tetap benar
+  walau IP VM berubah. Di bawah, `<ip-vm>` boleh diganti nama host ini.
+- **IP VM bisa berubah** tiap VM restart (DHCP dari Hyper-V Default Switch). Contoh:
+  10 Oktober 2026 `172.23.192.247`, 16 Oktober 2026 `172.28.157.112` — IP lama sudah
+  tidak menjawab (SSH timeout). Kalau nama host gagal di-resolve, cek IP lewat Hyper-V
+  Manager → Connect → login → `ip a` (baris `inet` di `eth0`). `Get-VM` dari PowerShell
+  biasa ditolak (butuh admin/grup Hyper-V Administrators).
 - Kode project ada di `~/apps/roziqrizalcom/` di VM (bukan hasil `git clone`, tidak ada
   folder `.git` di sana).
 
