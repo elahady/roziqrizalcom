@@ -56,6 +56,7 @@ class Projects
                 ],
             ],
             'al-kaukaba' => [
+                'view' => 'karya.al-kaukaba',
                 'name' => 'Al-Kaukaba',
                 'tagline' => 'Semua kebutuhan falak dalam satu genggaman.',
                 'summary' => 'Jadwal sholat, arah kiblat, awal bulan Hijriyah, fase Bulan, dan gerhana dalam satu aplikasi Android.',
@@ -64,12 +65,12 @@ class Projects
                 'rooms' => 'Ruang Angkasa',
                 'tech' => ['Kotlin', 'Android', 'Ilmu falak'],
                 'screens' => [
-                    ['file' => 'alkaukaba-beranda.jpg', 'alt' => 'Beranda Al-Kaukaba: waktu sholat berikutnya dan fase Bulan'],
-                    ['file' => 'alkaukaba-kiblat.jpg', 'alt' => 'Fitur arah kiblat di Al-Kaukaba'],
-                    ['file' => 'alkaukaba-waktu-sholat.jpg', 'alt' => 'Fitur jadwal waktu sholat di Al-Kaukaba'],
-                    ['file' => 'alkaukaba-awal-bulan.jpg', 'alt' => 'Fitur awal bulan Hijriyah di Al-Kaukaba'],
-                    ['file' => 'alkaukaba-peta.jpg', 'alt' => 'Fitur peta di Al-Kaukaba'],
-                    ['file' => 'alkaukaba-gerhana.jpg', 'alt' => 'Fitur gerhana di Al-Kaukaba'],
+                    ['file' => 'alkaukaba-beranda.jpg', 'alt' => 'Beranda Al-Kaukaba: waktu sholat berikutnya dan fase Bulan', 'caption' => 'Beranda'],
+                    ['file' => 'alkaukaba-kiblat.jpg', 'alt' => 'Fitur arah kiblat di Al-Kaukaba', 'caption' => 'Arah kiblat'],
+                    ['file' => 'alkaukaba-waktu-sholat.jpg', 'alt' => 'Fitur jadwal waktu sholat di Al-Kaukaba', 'caption' => 'Waktu sholat'],
+                    ['file' => 'alkaukaba-awal-bulan.jpg', 'alt' => 'Fitur awal bulan Hijriyah di Al-Kaukaba', 'caption' => 'Awal bulan'],
+                    ['file' => 'alkaukaba-peta.jpg', 'alt' => 'Fitur peta di Al-Kaukaba', 'caption' => 'Peta visibilitas'],
+                    ['file' => 'alkaukaba-gerhana.jpg', 'alt' => 'Fitur gerhana di Al-Kaukaba', 'caption' => 'Gerhana'],
                 ],
             ],
         ];
