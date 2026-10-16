@@ -7,7 +7,7 @@
 <article class="bento-card border-surface-variant hover:border-primary bg-surface hover:bg-surface-container-low rounded-xl p-6 md:p-8 flex flex-col gap-6">
     <div class="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2" tabindex="0" role="group" aria-label="Tangkapan layar {{ $project['name'] }}">
         @foreach ($project['screens'] as $screen)
-            <img src="{{ asset('images/karya/' . $screen['file']) }}"
+            <img src="{{ \App\Support\Projects::imageUrl($screen['file']) }}"
                  alt="{{ $screen['alt'] }}"
                  loading="lazy"
                  class="h-72 w-auto shrink-0 snap-start rounded-lg border border-surface-variant">

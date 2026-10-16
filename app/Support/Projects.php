@@ -84,4 +84,17 @@ class Projects
     {
         return array_filter(self::all(), fn (array $project) => isset($project['view']));
     }
+
+    /**
+     * URL gambar karya dengan penanda versi dari isi berkasnya (?v=). Gambar disajikan
+     * dengan Cache-Control immutable setahun, jadi tanpa penanda ini gambar yang diganti
+     * di bawah nama yang sama tetap tampil versi lama di browser dan edge CDN.
+     */
+    public static function imageUrl(string $file): string
+    {
+        $url = asset('images/karya/'.$file);
+        $hash = @md5_file(public_path('images/karya/'.$file));
+
+        return $hash ? $url.'?v='.substr($hash, 0, 8) : $url;
+    }
 }

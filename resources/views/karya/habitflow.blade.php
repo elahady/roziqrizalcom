@@ -132,7 +132,7 @@
             <div class="md:w-1/2 w-full soft-gradient border border-surface-variant rounded-xl ambient-glow px-6 py-10 md:px-8 md:py-12 flex justify-center items-start gap-6">
                 @foreach (array_slice($project['screens'], 0, 2) as $i => $screen)
                     <div class="w-1/2 max-w-[200px] rounded-2xl border border-outline-variant overflow-hidden bg-white ambient-glow {{ $i === 1 ? 'mt-16' : '' }}">
-                        <img src="{{ asset('images/karya/' . $screen['file']) }}" alt="{{ $screen['alt'] }}" width="540" height="1200" class="block w-full h-auto">
+                        <img src="{{ \App\Support\Projects::imageUrl($screen['file']) }}" alt="{{ $screen['alt'] }}" width="540" height="1200" class="block w-full h-auto">
                     </div>
                 @endforeach
             </div>
@@ -232,7 +232,7 @@
                 @foreach ($webScreens as $screen)
                     <figure class="space-y-4">
                         <div class="rounded-xl border border-outline-variant overflow-hidden bg-white ambient-glow">
-                            <img src="{{ asset('images/karya/' . $screen['file']) }}" alt="{{ $screen['alt'] }}" loading="lazy" class="block w-full h-auto">
+                            <img src="{{ \App\Support\Projects::imageUrl($screen['file']) }}" alt="{{ $screen['alt'] }}" loading="lazy" class="block w-full h-auto">
                         </div>
                         @isset($screen['caption'])
                             <figcaption class="font-manrope text-label-caps uppercase text-tertiary text-center">{{ $screen['caption'] }}</figcaption>
@@ -248,7 +248,7 @@
             @foreach ($project['screens'] as $screen)
                 <figure class="w-full max-w-[280px] space-y-4">
                     <div class="rounded-[20px] border border-outline-variant overflow-hidden bg-white ambient-glow">
-                        <img src="{{ asset('images/karya/' . $screen['file']) }}" alt="{{ $screen['alt'] }}" width="540" height="1200" loading="lazy" class="block w-full h-auto">
+                        <img src="{{ \App\Support\Projects::imageUrl($screen['file']) }}" alt="{{ $screen['alt'] }}" width="540" height="1200" loading="lazy" class="block w-full h-auto">
                     </div>
                     @isset($screen['caption'])
                         <figcaption class="font-manrope text-label-caps uppercase text-tertiary text-center">{{ $screen['caption'] }}</figcaption>
