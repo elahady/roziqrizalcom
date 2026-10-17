@@ -1,7 +1,7 @@
 # Deploy — cara kerja dan cara lanjut dari sesi lain
 
 Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa deploy
-`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026, diperbarui 16 Oktober 2026.
+`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026, diperbarui 17 Oktober 2026.
 
 ## Fakta penting
 
@@ -28,9 +28,22 @@ Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa dep
 - Kode project ada di `~/apps/roziqrizalcom/` di VM (bukan hasil `git clone`, tidak ada
   folder `.git` di sana).
 
-## Proses deploy (manual, belum ada script otomatis)
+## Proses deploy
 
-Jalankan dari root repo ini di PC Windows (Git Bash). Commit dulu — yang dikirim adalah
+Cara cepat — dari root repo di PC Windows (Git Bash), setelah semua perubahan di-commit:
+
+```bash
+scripts/deploy.sh             # deploy HEAD ke VM
+scripts/deploy.sh --dry-run   # cek repo + bangun arsip saja, VM tidak disentuh
+```
+
+[Script](scripts/deploy.sh) menjalankan langkah 1–5 di bawah, lalu berhenti dengan pesan
+jelas kalau ada yang gagal: working tree kotor, branch bukan `main`, SSH tidak tersambung,
+container tidak `healthy` dalam 90 detik, atau `https://roziqrizal.com/` tidak membalas 200.
+Kalau IP/nama host VM berubah: `DEPLOY_HOST=elahady@<ip-vm> scripts/deploy.sh`
+(`DEPLOY_DIR` dan `DEPLOY_URL` juga bisa di-override).
+
+Langkah manual di bawah tetap berguna untuk debugging. Commit dulu — yang dikirim adalah
 `HEAD`, jadi perubahan yang belum di-commit tidak ikut.
 
 ```bash
