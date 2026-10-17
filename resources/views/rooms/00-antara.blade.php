@@ -10,5 +10,6 @@
         <h3 class="font-serif-display text-headline-md text-on-primary">Ruang Antara</h3>
         <p class="font-serif-display italic text-lg text-primary-fixed">Ada jeda di antara stimulus dan respons &mdash; dan di situlah saya sebenarnya tinggal.</p>
         <p class="font-manrope text-body-md text-primary-fixed">Bukan sebuah kamar seperti delapan lainnya. Ia adalah lorong tempat kedelapan ruang itu bertemu &mdash; tempat ketenangan dipilih, bukan kebetulan; tempat reaksi diubah menjadi keputusan.</p>
+        @include('partials.room-journal-link', ['room' => 'antara', 'dark' => true])
     </div>
 </article>

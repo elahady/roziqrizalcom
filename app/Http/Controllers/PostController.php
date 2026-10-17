@@ -13,6 +13,6 @@ class PostController extends Controller
 
         abort_unless($post, 404);
 
-        return view($post['view'], ['post' => $post]);
+        return view($post['view'], ['slug' => $slug, 'post' => $post]);
     }
 }

@@ -39,7 +39,7 @@ Saat memberi saran konten, struktur navigasi, atau desain baru, prioritaskan ops
 ## Desain
 
 - Desain acuan (source of truth) ada di homepage — palet sage/Material-3 (`resources/css/app.css`, token warna `--color-primary` dll.), font Libre Caslon Text (judul/serif) + Manrope (body/UI).
-- Halaman lain (Journal, About, dll.) memakai layout lama ([resources/views/components/layout.blade.php](resources/views/components/layout.blade.php) + `public/css/app.css`) yang sudah direstyle agar konsisten dengan palet & font homepage.
+- Semua halaman (Journal, post, profil, Karya) memakai satu layout, [resources/views/components/layout.blade.php](resources/views/components/layout.blade.php) (`<x-layout>`), dengan header dan footer yang sama; homepage punya hero sendiri. Journal terhubung ke tema lewat filter ruang (`/journal?ruang=<slug>`), lihat [app/Support/Rooms.php](app/Support/Rooms.php).
 
 ## Shortcut Project (lokal, khusus mesin ini)
 

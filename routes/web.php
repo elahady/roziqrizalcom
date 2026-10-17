@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\PostController;
 use App\Support\Posts;
 use App\Support\Projects;
@@ -9,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('home');
 Route::view('/home', 'home');
 
-// Blog index (was previously the homepage)
-Route::get('/journal', fn () => view('journal', ['posts' => Posts::byCategory('blog')]))->name('journal');
+// Journal: semua tulisan, atau satu ruang lewat ?ruang=<slug>
+Route::get('/journal', [JournalController::class, 'index'])->name('journal');
 
 // Static profile & content pages
 Route::view('/im-project-manager', 'pages.im-project-manager');
@@ -29,13 +30,13 @@ Route::get('/karya/{slug}', function (string $slug) {
     return view($project['view'], ['project' => $project]);
 })->name('karya.show');
 
-// Category archives
-Route::get('/category/daily-jurnal-trading', fn () => view('category.daily-jurnal-trading', ['posts' => Posts::byCategory('btcusd')]));
-Route::get('/category/daily-jurnal-trading/btcusd', fn () => view('category.btcusd', ['posts' => Posts::byCategory('btcusd')]));
+// Arsip kategori lama — jurnal trading sekarang ada di Ruang Taktik
+Route::redirect('/category/daily-jurnal-trading', '/journal?ruang=taktik', 301);
+Route::redirect('/category/daily-jurnal-trading/btcusd', '/journal?ruang=taktik', 301);
 
-// Blog & trading journal posts — metadata (title, date, excerpt, category)
+// Blog & trading journal posts — metadata (title, date, excerpt, room)
 // lives in app/Support/Posts.php, the single source of truth also used by
-// the journal/category listings above. Adding a post = new view + one entry
+// the journal listing above. Adding a post = new view + one entry
 // there, nothing to add here.
 Route::get('/{slug}', [PostController::class, 'show'])
     ->where('slug', implode('|', array_map(fn ($slug) => preg_quote($slug, '#'), array_keys(Posts::all()))))

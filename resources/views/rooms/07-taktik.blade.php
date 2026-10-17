@@ -13,5 +13,6 @@
             <li class="font-manrope text-label-caps text-secondary border border-outline-variant rounded px-3 py-1">Disiplin</li>
             <li class="font-manrope text-label-caps text-secondary border border-outline-variant rounded px-3 py-1">Evaluasi</li>
         </ul>
+        @include('partials.room-journal-link', ['room' => 'taktik'])
     </div>
 </article>

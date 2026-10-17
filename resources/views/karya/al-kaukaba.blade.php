@@ -95,7 +95,7 @@
         ['Perhitungan di perangkat.', 'Hisab dikerjakan di HP, tidak bergantung pada panggilan jaringan.'],
     ];
 @endphp
-<x-layout-main title="Al-Kaukaba – Karya" active="karya" description="Al-Kaukaba: aplikasi Android ilmu falak untuk jadwal sholat, arah kiblat, awal bulan Hijriyah, fase Bulan, dan gerhana. Sudah tersedia di Google Play.">
+<x-layout title="Al-Kaukaba – Karya" active="karya" description="Al-Kaukaba: aplikasi Android ilmu falak untuk jadwal sholat, arah kiblat, awal bulan Hijriyah, fase Bulan, dan gerhana. Sudah tersedia di Google Play.">
 
     {{-- Hero --}}
     <section class="max-w-[1200px] mx-auto px-6 md:px-16 pt-10 pb-16 md:pb-20">
@@ -239,4 +239,4 @@
         </div>
     </section>
 
-</x-layout-main>
+</x-layout>

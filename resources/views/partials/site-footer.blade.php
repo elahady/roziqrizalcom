@@ -6,7 +6,7 @@
         <div class="flex flex-wrap justify-center gap-8">
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/#karya') }}">Karya</a>
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/journal') }}">Journal</a>
-            <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/about-me') }}">About</a>
+            <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="{{ url('/about-me') }}">Profil</a>
             <a class="font-manrope text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="https://www.linkedin.com/in/roziq-rizal/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <div class="font-manrope text-body-md text-secondary text-center md:text-right">

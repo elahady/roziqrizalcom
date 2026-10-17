@@ -14,83 +14,94 @@ utang teknis. Kalau nanti volume tumbuh jauh lebih besar dan mulai butuh
 draft/schedule/edit dari luar git, itu baru jadi trigger untuk naik level ke
 model+database.
 
-Ada dua jenis halaman:
+Ada tiga jenis halaman. Semuanya memakai satu layout, `<x-layout>`
+(`resources/views/components/layout.blade.php`), dengan header dan footer yang sama
+dengan homepage.
 
-1. **Halaman statis murni** (Rooms, About, Privacy Policy, dll.) — tidak
-   tampil di listing/kategori manapun. Cukup:
-   - Buat view di `resources/views/pages/<nama>.blade.php`.
+1. **Halaman profil/statis** (Tentang saya, I'm Project Manager, Hajj 2026, dll.) —
+   tidak tampil di Journal. Cukup:
+   - Buat view di `resources/views/pages/<nama>.blade.php`, dibungkus
+     `<x-page title="...">` (isinya markup polos: `<h2>`, `<p>`, `<ul>`, dst.;
+     judul dan kolom baca dirender komponen). Opsional: `eyebrow`, `meta`, `active`.
    - Daftarkan `Route::view('/slug', 'pages.nama')` di `routes/web.php`.
-
-2. **Post** (blog & trading journal) — tampil di halaman Journal dan/atau
-   arsip kategori, jadi metadatanya (judul, tanggal, excerpt, kategori) tidak
-   boleh diketik ulang di banyak file. Lihat bagian berikut.
+   - Tambahkan ke menu **Profil** di `resources/views/partials/site-header.blade.php`
+     (array `$profile`) supaya ada jalan masuknya.
+2. **Post** (blog & jurnal trading) — tampil di Journal dan di filter ruang, jadi
+   metadatanya tidak boleh diketik ulang di banyak file. Lihat bagian berikut.
+3. **Halaman Karya** (`/karya/{slug}`) — metadata di `app/Support/Projects.php`,
+   view di `resources/views/karya/`, memakai `<x-layout active="karya">`.
 
 ## Menambah post baru
 
 Post metadata punya **satu sumber kebenaran**: [`app/Support/Posts.php`](app/Support/Posts.php).
-Routing (`PostController`) dan semua listing (Journal, arsip kategori) baca
-dari array ini — jangan sentuh `routes/web.php` untuk post baru.
+Routing (`PostController`) dan Journal (`JournalController`) baca dari array ini — jangan
+sentuh `routes/web.php` untuk post baru.
 
 Langkah menambah post:
 
-1. Buat view di `resources/views/posts/<nama-file>.blade.php` (isi bebas,
-   pakai `<x-layout>` seperti post lain).
+1. Buat view di `resources/views/posts/<nama-file>.blade.php`:
+   ```blade
+   <x-post :slug="$slug" :post="$post">
+
+       <h2>Subjudul</h2>
+       <p>Isi tulisan...</p>
+
+   </x-post>
+   ```
+   Judul, tanggal, penulis, chip seri, kartu "ruang asal", navigasi lebih lama/lebih baru
+   dirender komponen dari metadata di bawah — jangan diketik ulang di view. Kalau post punya
+   komentar, taruh di `<x-slot:comments>...</x-slot:comments>` (default: tidak ada bagian komentar).
 2. Tambah satu entry di `Posts::all()`:
    ```php
    'slug-url-post-ini' => [
        'view' => 'posts.nama-file',
        'title' => 'Judul Post',
-       'date' => 'Month DD, YYYY',
+       'date' => 'Month D, YYYY',
        'excerpt' => 'Ringkasan singkat, diakhiri …',
-       'category' => 'blog', // atau 'btcusd', atau kategori baru
+       'room' => 'taktik',   // slug dari Rooms::all(): finansial, kerja, angkasa, ...
+       'series' => 'btcusd', // opsional, kunci dari Posts::SERIES
    ],
    ```
-3. Selesai — `/slug-url-post-ini` otomatis ke-route ke view-nya, dan post
-   otomatis muncul di listing kategori yang sesuai (lihat
-   `Posts::byCategory()` yang dipakai `routes/web.php` untuk halaman Journal
-   & arsip kategori).
+3. Selesai — `/slug-url-post-ini` otomatis ke-route, post muncul di Journal, di filter
+   `/journal?ruang=<room>`, dan jumlahnya ikut tampil di kartu ruang homepage.
 
-Jangan bikin `Route::view()` baru per post, dan jangan copy-paste markup
-`<article class="post-card">` di listing manapun — pakai
-`@include('partials.post-card', ['slug' => $slug, 'post' => $post])`, yang
-sudah otomatis dipakai oleh `journal.blade.php` dan
-`partials/trading-post-list.blade.php` lewat `@foreach ($posts as $slug =>
-$post)`.
+Chip filter di Journal hanya muncul untuk ruang yang punya post. Ruang baru ditambah di
+[`app/Support/Rooms.php`](app/Support/Rooms.php); teks kartunya di homepage ada di
+`resources/views/rooms/` (ubah keduanya kalau tagline berganti).
 
-## Partial yang wajib dipakai ulang
+URL lama `/category/daily-jurnal-trading` dan `/category/daily-jurnal-trading/btcusd`
+dialihkan (301) ke `/journal?ruang=taktik`.
 
-- **`partials.post-card`** — satu kartu post di listing (judul + tanggal +
-  excerpt + link). Dipakai di `journal.blade.php` dan
-  `partials/trading-post-list.blade.php`.
-- **`partials.no-comments`** — placeholder "belum ada komentar" di akhir
-  artikel. Default: heading "Leave a Reply", pesan "Belum ada komentar.".
+## Partial & komponen yang wajib dipakai ulang
+
+- **`<x-layout>`** — satu-satunya layout. Props: `title`, `description`, `active`
+  (`denah` | `karya` | `journal` | `profil`, untuk menyorot menu).
+- **`<x-post>`** dan **`<x-page>`** — pembungkus post dan halaman profil (lihat di atas).
+- **`partials.post-row`** — satu baris post di listing Journal.
+- **`partials.room-journal-link`** — baris "N tulisan di Journal →" di tiap kartu ruang.
+- **`partials.no-comments`** — placeholder "belum ada komentar" untuk slot `comments`.
   Override lewat prop kalau perlu teks beda:
   ```blade
   @include('partials.no-comments', ['heading' => 'Comments', 'message' => 'Pesan custom.'])
   ```
-  Kalau sebuah post memang punya komentar riil (bukan placeholder), tulis
-  manual dengan class `.comment-item` / `.comment-author` / `.comment-meta`
-  (lihat `posts/menavigasi-arsitektur.blade.php`), jangan pakai partial ini.
+  Kalau sebuah post memang punya komentar riil, tulis manual dengan class `.comments` /
+  `.comment-item` / `.comment-author` / `.comment-meta` (lihat
+  `posts/menavigasi-arsitektur.blade.php`).
 
 ## Styling
 
-- **Jangan pakai atribut `style="..."` inline di Blade.** Tambahkan class ke
-  stylesheet yang relevan. Ini supaya satu perubahan visual (warna border,
-  spacing) tidak perlu diulang di setiap file post.
-- Ada **dua stylesheet** yang hidup berdampingan (transisi desain, bukan
-  duplikasi yang perlu buru-buru disatukan):
-  - `resources/css/app.css` — desain acuan/source-of-truth terbaru (palet
-    sage/Material-3, token warna `--color-primary` dll.), dipakai homepage.
-  - `public/css/app.css` — layout lama, dipakai halaman lain (Journal,
-    posts, pages, category), sudah direstyle agar konsisten dengan homepage
-    lewat token warna sendiri (`--border-light`, `--muted`, dll.).
-  Kalau menambah style untuk halaman non-homepage, tambahkan ke
-  `public/css/app.css` dan pakai variabel token yang sudah ada, bukan warna
-  hex baru.
+- **Jangan pakai atribut `style="..."` inline di Blade.** Pakai utilitas Tailwind dan
+  token warna dari `resources/css/app.css` (`text-primary`, `bg-sage-pastel`, dst.),
+  bukan warna hex baru.
+- Hanya ada **satu stylesheet**: `resources/css/app.css` (Tailwind v4 + Vite). Isi artikel
+  di dalam `<x-post>`/`<x-page>` memakai markup polos; elemen `h2`, `h3`, `ul`, `blockquote`,
+  `table`, `figure`, `.image-row`, `.core-insight` di-style oleh blok `.article-body` di file itu.
+- Aset dibangun lewat `npm run build` (otomatis di Dockerfile); `public/build` tidak ada di git.
 
 ## Menjalankan lokal
 
 ```
+npm run build   # sekali, atau npm run dev
 php artisan serve
 ```
 

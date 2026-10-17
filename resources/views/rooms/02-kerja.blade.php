@@ -15,5 +15,6 @@
             <li class="font-manrope text-label-caps text-secondary border border-outline-variant rounded px-3 py-1">Prioritas</li>
             <li class="font-manrope text-label-caps text-secondary border border-outline-variant rounded px-3 py-1">Akuntabilitas</li>
         </ul>
+        @include('partials.room-journal-link', ['room' => 'kerja'])
     </div>
 </article>

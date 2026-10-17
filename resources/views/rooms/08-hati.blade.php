@@ -11,6 +11,7 @@
             <h4 class="font-serif-display text-headline-md text-on-surface">Ruang Hati</h4>
             <p class="font-serif-display italic text-lg text-on-surface-variant">Prioritas, bukan sisa waktu.</p>
             <p class="font-manrope text-body-md text-on-surface-variant">Rumah tangga diberi tempat dan waktu yang sama sengajanya dengan ruang-ruang lain &mdash; karena inilah yang membuat semua ruang lain masuk akal.</p>
+            @include('partials.room-journal-link', ['room' => 'hati'])
         </div>
     </div>
     <ul class="flex flex-wrap gap-2 md:shrink-0">

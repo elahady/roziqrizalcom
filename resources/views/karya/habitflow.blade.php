@@ -105,7 +105,7 @@
 
     $webScreens = $project['web_screens'] ?? [];
 @endphp
-<x-layout-main title="Habitflow – Karya" active="karya" description="Habitflow: asisten harian pribadi yang menyatukan habit, jadwal, follow-up kerja, dan to-do bersama. Dibangun sendiri untuk Android dan web.">
+<x-layout title="Habitflow – Karya" active="karya" description="Habitflow: asisten harian pribadi yang menyatukan habit, jadwal, follow-up kerja, dan to-do bersama. Dibangun sendiri untuk Android dan web.">
 
     {{-- Hero --}}
     <section class="max-w-[1200px] mx-auto px-6 md:px-16 pt-10 pb-16 md:pb-20">
@@ -270,4 +270,4 @@
         </div>
     </section>
 
-</x-layout-main>
+</x-layout>
