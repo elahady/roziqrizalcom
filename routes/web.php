@@ -20,9 +20,6 @@ Route::view('/market-observer', 'pages.market-observer');
 Route::view('/about-me', 'pages.about-me');
 Route::view('/haji-2026', 'pages.haji-2026');
 Route::view('/privacy-policy-al-kaukaba', 'pages.privacy-policy');
-Route::view('/culture-leadership', 'pages.culture-leadership');
-Route::view('/the-bridge', 'pages.the-bridge');
-Route::view('/anonymized-case-studies', 'pages.anonymized-case-studies');
 
 // Portfolio ("Karya") detail pages — metadata lives in app/Support/Projects.php.
 // Only projects with a 'view' key get a page; the rest are homepage cards only.

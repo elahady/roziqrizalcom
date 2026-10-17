@@ -484,13 +484,3 @@ img { max-width: 100%; display: block; }
 }
 
 .site-footer .social-links { margin-bottom: 16px; }
-
-.placeholder-note {
-    background: var(--accent-container);
-    border: 1px dashed var(--accent);
-    border-radius: var(--radius);
-    color: var(--accent-container-text);
-    font-size: 0.85rem;
-    padding: 10px 16px;
-    margin-bottom: 20px;
-}
