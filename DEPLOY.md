@@ -1,31 +1,31 @@
 # Deploy — cara kerja dan cara lanjut dari sesi lain
 
 Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa deploy
-`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026, diperbarui 17 Oktober 2026.
+`roziqrizal.com` tanpa re-derive prosesnya. Ditulis 10 Oktober 2026, diperbarui 18 Oktober
+2026 (migrasi VM rumah → VPS, lihat [MIGRATION.md repo server](https://github.com/elahady/build-server/blob/main/MIGRATION.md)).
 
 ## Fakta penting
 
 - **Git push ≠ deploy.** Push ke GitHub cuma riwayat/backup kode. Yang bikin perubahan
-  tampil di `https://roziqrizal.com` adalah deploy manual ke VM (lihat di bawah).
-- **Kode jalan di VM Linux di rumah**, bukan di layanan hosting. VM yang sama juga
-  menjalankan habitflow dan MySQL bersama. Detail infrastruktur VM (Hyper-V, Cloudflare
-  Tunnel, dll) ada di [repo `server`](https://github.com/elahady/build-server) — baca
-  `ROADMAP.md` dan `TROUBLESHOOTING.md` di sana kalau masalahnya di VM, bukan di kode.
+  tampil di `https://roziqrizal.com` adalah deploy manual ke VPS (lihat di bawah).
+- **Kode jalan di VPS IDCloudHost Jakarta** (`103.54.170.198`), bukan di VM rumah lagi
+  (VM lama sudah tidak dipakai sejak 18 Oktober 2026 — motherboard PC rumah rusak). VPS
+  yang sama juga menjalankan habitflow dan MySQL bersama. Detail infrastruktur VPS
+  (Docker, nginx, Cloudflare Origin Cert, dll) ada di
+  [repo `server`](https://github.com/elahady/build-server) — baca `ROADMAP.md` dan
+  `CLAUDE.md` di sana kalau masalahnya di VPS, bukan di kode.
 - Satu container (`roziqrizalcom`, port `8080`) melayani `roziqrizal.com`,
-  `www.roziqrizal.com`, dan `server.roziqrizal.com` lewat ingress Cloudflare Tunnel.
+  `www.roziqrizal.com`, dan `server.roziqrizal.com` lewat nginx + Cloudflare Origin
+  Certificate (Cloudflare proxied, **bukan Cloudflare Tunnel** — arsitektur lama sudah
+  dihentikan).
 
-## Akses VM
+## Akses VPS
 
-- SSH: `ssh elahady@homeserver-linux.mshome.net` — key-based auth sudah di-setup dari
-  PC Windows ini (`~/.ssh/id_ed25519`), tidak perlu password. Pakai nama host ini, bukan
-  IP: nama `*.mshome.net` di-resolve oleh Hyper-V Default Switch, jadi tetap benar
-  walau IP VM berubah. Di bawah, `<ip-vm>` boleh diganti nama host ini.
-- **IP VM bisa berubah** tiap VM restart (DHCP dari Hyper-V Default Switch). Contoh:
-  10 Oktober 2026 `172.23.192.247`, 16 Oktober 2026 `172.28.157.112` — IP lama sudah
-  tidak menjawab (SSH timeout). Kalau nama host gagal di-resolve, cek IP lewat Hyper-V
-  Manager → Connect → login → `ip a` (baris `inet` di `eth0`). `Get-VM` dari PowerShell
-  biasa ditolak (butuh admin/grup Hyper-V Administrators).
-- Kode project ada di `~/apps/roziqrizalcom/` di VM (bukan hasil `git clone`, tidak ada
+- SSH: `ssh -i ~/.ssh/id_ed25519_vps_jakarta elahady@103.54.170.198` — key-based auth,
+  **password login dimatikan** (SSH di-hardening). Pakai IP ini langsung, bukan nama
+  host — VPS ini IP publik tetap (bukan DHCP seperti VM Hyper-V lama), tidak berubah
+  tiap restart.
+- Kode project ada di `~/apps/roziqrizalcom/` di VPS (bukan hasil `git clone`, tidak ada
   folder `.git` di sana).
 
 ## Proses deploy
@@ -33,15 +33,15 @@ Dokumen ini supaya sesi Claude Code mana pun (atau kamu sendiri manual) bisa dep
 Cara cepat — dari root repo di PC Windows (Git Bash), setelah semua perubahan di-commit:
 
 ```bash
-scripts/deploy.sh             # deploy HEAD ke VM
-scripts/deploy.sh --dry-run   # cek repo + bangun arsip saja, VM tidak disentuh
+scripts/deploy.sh             # deploy HEAD ke VPS
+scripts/deploy.sh --dry-run   # cek repo + bangun arsip saja, VPS tidak disentuh
 ```
 
 [Script](scripts/deploy.sh) menjalankan langkah 1–5 di bawah, lalu berhenti dengan pesan
 jelas kalau ada yang gagal: working tree kotor, branch bukan `main`, SSH tidak tersambung,
 container tidak `healthy` dalam 90 detik, atau `https://roziqrizal.com/` tidak membalas 200.
-Kalau IP/nama host VM berubah: `DEPLOY_HOST=elahady@<ip-vm> scripts/deploy.sh`
-(`DEPLOY_DIR` dan `DEPLOY_URL` juga bisa di-override).
+Default `DEPLOY_HOST=elahady@103.54.170.198` dan `DEPLOY_KEY=~/.ssh/id_ed25519_vps_jakarta`
+— override kalau perlu, `DEPLOY_DIR` dan `DEPLOY_URL` juga bisa di-override.
 
 Langkah manual di bawah tetap berguna untuk debugging. Commit dulu — yang dikirim adalah
 `HEAD`, jadi perubahan yang belum di-commit tidak ikut.
@@ -50,17 +50,17 @@ Langkah manual di bawah tetap berguna untuk debugging. Commit dulu — yang diki
 # 1. Arsip dari HEAD (hanya file ter-commit; .env* dan node_modules otomatis tidak ikut)
 git archive --format=tar.gz HEAD -o /tmp/rr-deploy.tar.gz
 
-# 2. Kirim ke VM
-scp /tmp/rr-deploy.tar.gz elahady@<ip-vm>:~/apps/rr-deploy.tar.gz
+# 2. Kirim ke VPS
+scp -i ~/.ssh/id_ed25519_vps_jakarta /tmp/rr-deploy.tar.gz elahady@103.54.170.198:~/apps/rr-deploy.tar.gz
 
-# 3. Extract di VM (menimpa file lama) lalu build image baru
-ssh elahady@<ip-vm> "cd ~/apps/roziqrizalcom && tar -xzf ../rr-deploy.tar.gz && rm ../rr-deploy.tar.gz && docker compose build"
+# 3. Extract di VPS (menimpa file lama) lalu build image baru
+ssh -i ~/.ssh/id_ed25519_vps_jakarta elahady@103.54.170.198 "cd ~/apps/roziqrizalcom && tar -xzf ../rr-deploy.tar.gz && rm ../rr-deploy.tar.gz && docker compose build"
 
 # 4. Recreate container — pakai down + up, JANGAN cuma `up -d` (lihat catatan port di bawah)
-ssh elahady@<ip-vm> "cd ~/apps/roziqrizalcom && docker compose down && docker compose up -d"
+ssh -i ~/.ssh/id_ed25519_vps_jakarta elahady@103.54.170.198 "cd ~/apps/roziqrizalcom && docker compose down && docker compose up -d"
 
 # 5. Tunggu ±15 detik sampai status (healthy), lalu verifikasi dari luar
-ssh elahady@<ip-vm> "docker ps --format '{{.Names}} {{.Status}}' | grep roziqrizalcom"
+ssh -i ~/.ssh/id_ed25519_vps_jakarta elahady@103.54.170.198 "docker ps --format '{{.Names}} {{.Status}}' | grep roziqrizalcom"
 curl -sI https://roziqrizal.com/ | head -1
 ```
 
@@ -71,17 +71,17 @@ Karena itu `public/build` **tidak perlu** ada di git.
 Tidak ada migrasi yang perlu dijalankan — situs ini tidak punya tabel konten.
 
 **Catatan**: `tar -x` hanya menimpa/menambah file. Kalau kamu **menghapus** file di repo,
-file itu masih ada di VM sampai dihapus manual (`ssh ... "rm ~/apps/roziqrizalcom/<path>"`).
+file itu masih ada di VPS sampai dihapus manual (`ssh ... "rm ~/apps/roziqrizalcom/<path>"`).
 
 ## File kredensial — TIDAK ada di git
 
 - `.env.production` (APP_KEY dll) gitignored dan di-exclude dari image (`.dockerignore`).
   Isinya ada di dua tempat: file lokal di PC ini, dan
-  `~/apps/roziqrizalcom/.env.production` di VM. `docker-compose.yml` membacanya lewat
+  `~/apps/roziqrizalcom/.env.production` di VPS. `docker-compose.yml` membacanya lewat
   `env_file` saat container dibuat — jadi kalau mengubahnya, jalankan `down` + `up -d`.
-- **Kalau file lokal hilang**: tarik dari VM —
-  `scp elahady@<ip-vm>:~/apps/roziqrizalcom/.env.production .env.production`. Jangan
-  generate `APP_KEY` baru.
+- **Kalau file lokal hilang**: tarik dari VPS —
+  `scp -i ~/.ssh/id_ed25519_vps_jakarta elahady@103.54.170.198:~/apps/roziqrizalcom/.env.production .env.production`.
+  Jangan generate `APP_KEY` baru.
 
 ## Data persisten
 

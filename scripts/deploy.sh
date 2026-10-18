@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
-# Deploy roziqrizal.com ke VM rumah. Dijalankan dari root repo lewat Git Bash:
+# Deploy roziqrizal.com ke VPS Jakarta (IDCloudHost). Dijalankan dari root repo lewat Git Bash:
 #
-#   scripts/deploy.sh             deploy HEAD ke VM
-#   scripts/deploy.sh --dry-run   hanya cek & bangun arsip, tidak menyentuh VM
+#   scripts/deploy.sh             deploy HEAD ke VPS
+#   scripts/deploy.sh --dry-run   hanya cek & bangun arsip, tidak menyentuh VPS
 #
 # Env opsional:
-#   DEPLOY_HOST   tujuan SSH (default: elahady@homeserver-linux.mshome.net)
-#   DEPLOY_DIR    folder project di VM (default: ~/apps/roziqrizalcom)
+#   DEPLOY_HOST   tujuan SSH (default: elahady@103.54.170.198)
+#   DEPLOY_KEY    identity file SSH (default: ~/.ssh/id_ed25519_vps_jakarta)
+#   DEPLOY_DIR    folder project di VPS (default: ~/apps/roziqrizalcom)
 #   DEPLOY_URL    URL untuk verifikasi akhir (default: https://roziqrizal.com/)
 #
 # Detail proses dan alasan tiap langkah ada di DEPLOY.md.
 
 set -euo pipefail
 
-HOST="${DEPLOY_HOST:-elahady@homeserver-linux.mshome.net}"
+HOST="${DEPLOY_HOST:-elahady@103.54.170.198}"
+KEY="${DEPLOY_KEY:-$HOME/.ssh/id_ed25519_vps_jakarta}"
 REMOTE_DIR="${DEPLOY_DIR:-apps/roziqrizalcom}"
 URL="${DEPLOY_URL:-https://roziqrizal.com/}"
 CONTAINER="roziqrizalcom"
@@ -30,7 +32,7 @@ esac
 step() { printf '\n==> %s\n' "$*"; }
 die()  { printf 'GAGAL: %s\n' "$*" >&2; exit 1; }
 
-SSH_OPTS=(-o ConnectTimeout=10 -o BatchMode=yes)
+SSH_OPTS=(-i "$KEY" -o ConnectTimeout=10 -o BatchMode=yes)
 remote() { ssh "${SSH_OPTS[@]}" "$HOST" "$@"; }
 
 cd "$(git rev-parse --show-toplevel)"
@@ -61,9 +63,9 @@ fi
 
 step "Cek koneksi SSH ke $HOST"
 remote "test -d ~/$REMOTE_DIR" \
-    || die "Tidak bisa SSH ke $HOST atau ~/$REMOTE_DIR tidak ada. Kalau nama host gagal di-resolve, cek IP VM lewat Hyper-V Manager (lihat DEPLOY.md) dan jalankan ulang dengan DEPLOY_HOST=elahady@<ip>."
+    || die "Tidak bisa SSH ke $HOST atau ~/$REMOTE_DIR tidak ada. Pastikan DEPLOY_KEY menunjuk ke identity file yang benar (default: ~/.ssh/id_ed25519_vps_jakarta) — VPS ini password login-nya dimatikan."
 
-step "Kirim arsip ke VM"
+step "Kirim arsip ke VPS"
 scp "${SSH_OPTS[@]}" -q "$ARCHIVE" "$HOST:~/apps/rr-deploy.tar.gz"
 
 step "Extract dan build image (bisa beberapa menit)"
@@ -85,6 +87,6 @@ done
 
 step "Verifikasi $URL"
 CODE="$(curl -s -o /dev/null -m 20 -w '%{http_code}' "$URL" || true)"
-[ "$CODE" = "200" ] || die "$URL membalas HTTP '${CODE:-tidak ada}', bukan 200. Container sehat, jadi cek tunnel Cloudflare di VM."
+[ "$CODE" = "200" ] || die "$URL membalas HTTP '${CODE:-tidak ada}', bukan 200. Container sehat, jadi cek nginx + proxy Cloudflare di VPS (lihat DEPLOY.md repo server)."
 
 printf '\nDeploy selesai: %s -> HTTP %s\n' "$URL" "$CODE"
