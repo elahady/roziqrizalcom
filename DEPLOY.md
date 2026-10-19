@@ -94,6 +94,13 @@ Dua named volume Docker, tidak terhapus oleh `docker compose down` (selama tanpa
 
 ## Hal-hal yang pernah bikin error
 
+- **(Belum pernah terjadi di sini per 19 Oktober 2026, tapi berpotensi)**: base image
+  `serversideup/php:8.3-fpm-nginx` (dipakai di [Dockerfile](Dockerfile)) defaultnya listen di
+  IPv4 **dan** IPv6. VPS ini tidak mendukung IPv6, dan `habitflow` + `rizqflow` (VPS yang sama,
+  base image yang sama) sudah kena ini saat `docker compose build` menarik versi base image yang
+  lebih baru: nginx gagal start (`socket() [::]:8080 failed`), container `unhealthy` terus. Kalau
+  kejadian di sini juga: tambahkan `NGINX_LISTEN_IP_PROTOCOL=ipv4` di `.env.production`. Detail
+  insiden lengkap di `habitflow/server/DEPLOY.md`.
 - Port `8080` gagal ter-publish kalau container dibuat ulang dengan `up -d` saja
   (race: Docker belum melepas port dari container lama). Fix: `down` dulu, baru `up -d`.
 - Folder `storage/framework/sessions` dan `storage/framework/views` tidak ada di repo;
