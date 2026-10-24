@@ -68,7 +68,10 @@ Build memakai multi-stage [Dockerfile](Dockerfile): stage Node membangun aset Vi
 stage produksi `serversideup/php:8.3-fpm-nginx` menjalankan `composer install --no-dev`.
 Karena itu `public/build` **tidak perlu** ada di git.
 
-Tidak ada migrasi yang perlu dijalankan — situs ini tidak punya tabel konten.
+Sejak `waitlist_signups` (2026-10-24), situs ini punya tabel fungsional (bukan konten editorial —
+lihat README.md). `scripts/deploy.sh` menjalankan `php artisan migrate --force` di dalam container
+otomatis setelah container `healthy`; langkah manual di atas belum mencakup ini, jadi kalau deploy
+manual tambahkan sendiri: `ssh ... "cd ~/apps/roziqrizalcom && docker compose exec -T app php artisan migrate --force"`.
 
 **Catatan**: `tar -x` hanya menimpa/menambah file. Kalau kamu **menghapus** file di repo,
 file itu masih ada di VPS sampai dihapus manual (`ssh ... "rm ~/apps/roziqrizalcom/<path>"`).

@@ -85,6 +85,9 @@ for ((i = 0; i < HEALTH_TIMEOUT; i += 3)); do
 done
 [ "$STATUS" = "healthy" ] || die "Container tidak healthy (status terakhir: '${STATUS:-tidak diketahui}'). Cek: ssh $HOST 'docker logs --tail 50 $CONTAINER'"
 
+step "Jalankan migrasi database (kalau ada yang belum diterapkan)"
+remote "cd ~/$REMOTE_DIR && docker compose exec -T app php artisan migrate --force"
+
 step "Verifikasi $URL"
 CODE="$(curl -s -o /dev/null -m 20 -w '%{http_code}' "$URL" || true)"
 [ "$CODE" = "200" ] || die "$URL membalas HTTP '${CODE:-tidak ada}', bukan 200. Container sehat, jadi cek nginx + proxy Cloudflare di VPS (lihat DEPLOY.md repo server)."
