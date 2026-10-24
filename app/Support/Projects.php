@@ -55,6 +55,17 @@ class Projects
                     ['file' => 'habitflow-web-tugas-rumah.jpg', 'alt' => 'Halaman Tugas Rumah di Habitflow web: tugas bersama pasangan dengan penanggung jawab', 'caption' => 'Tugas Rumah'],
                 ],
             ],
+            'rizqflow' => [
+                'view' => 'karya.rizqflow',
+                'name' => 'Rizqflow',
+                'tagline' => 'Rezeki itu hak. Alirkan ke tempat yang semestinya menerimanya.',
+                'summary' => 'Setiap rezeki yang masuk dialirkan ke ruang-ruang — Memberi, Diri, Keluarga, dan peran lain — lewat aturan alokasi, dengan modul zakat dan haul opsional. Lahir dari jurnal Ruang Finansial sendiri.',
+                'status' => 'dev',
+                'status_label' => 'Validasi minat',
+                'rooms' => 'Ruang Finansial',
+                'tech' => ['Kotlin', 'Jetpack Compose', 'Room', 'Laravel', 'Livewire'],
+                'screens' => [],
+            ],
             'al-kaukaba' => [
                 'view' => 'karya.al-kaukaba',
                 'name' => 'Al-Kaukaba',

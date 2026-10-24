@@ -31,6 +31,7 @@ menumpuk riwayat — riwayat ada di `git log`). Baca ini dulu saat membuka sesi 
 
 ### Sudah selesai (dan sudah live di roziqrizal.com)
 
+- **Halaman Karya Rizqflow + daftar tunggu** (`/karya/rizqflow`, 2026-10-24): landing page validasi minat untuk Tahap 0 Rizqflow (lihat roadmap Rizqflow), belum ada screenshot karena aplikasinya belum dibangun — hero pakai ilustrasi alokasi, bukan tangkapan layar. Form email (`POST /waitlist/{project}`, tabel baru `waitlist_signups`, unik per project+email) dipakai ulang per-proyek, tidak khusus Rizqflow. `project-card.blade.php` kini aman untuk entri Karya tanpa `screens`.
 - **Deploy satu perintah:** `scripts/deploy.sh` (`--dry-run` untuk uji tanpa menyentuh VM),
   menggantikan langkah manual di DEPLOY.md.
 - **Halaman placeholder dihapus:** `/culture-leadership`, `/the-bridge`,

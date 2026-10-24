@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\WaitlistController;
 use App\Support\Posts;
 use App\Support\Projects;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,9 @@ Route::get('/karya/{slug}', function (string $slug) {
 
     return view($project['view'], ['project' => $project]);
 })->name('karya.show');
+
+// Daftar tunggu per proyek Karya (validasi minat sebelum dibangun penuh, mis. Rizqflow Tahap 0)
+Route::post('/waitlist/{project}', [WaitlistController::class, 'store'])->name('waitlist.store');
 
 // Arsip kategori lama — jurnal trading sekarang ada di Ruang Taktik
 Route::redirect('/category/daily-jurnal-trading', '/journal?ruang=taktik', 301);
